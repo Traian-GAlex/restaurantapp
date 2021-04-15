@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         // use next command
         // cls && php artisan migrate:fresh && php artisan db:seed --class=AllTablesSeeder
+        // SET FOREIGN_KEY_CHECKS=0;
     }
 }

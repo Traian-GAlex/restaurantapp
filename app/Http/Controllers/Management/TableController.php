@@ -4,18 +4,23 @@ namespace App\Http\Controllers\Management;
 
 use App\Data\Models\Table;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 
-class TableController extends Controller
+class TableController extends CustomController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tables = Table::orderBy('name')->paginate(10);
+        if (null == $request->query('q')) {
+            $tables = Table::orderBy('name')->paginate($this->getItemsPerPage());
+        } else {
+            $tables = Table::where('name', 'like', "%" . trim($request->query('q')) . "%")->orderBy('name')->paginate($this->getItemsPerPage());
+        }
         return view("management.table.index")->with("tables", $tables);
     }
 
@@ -137,14 +142,14 @@ class TableController extends Controller
         return redirect("/management/table");
     }
 
-    private function deleteImage($image = null){
+    private function deleteImage($image = null)
+    {
         if (null == $image) return;
-        try{
+        try {
             if ((null != $image || "" != $image) && $image != "noimage.png") {
                 unlink(public_path("images/table_images") . "/" . $image);
             }
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             // nothing to display
         }
     }

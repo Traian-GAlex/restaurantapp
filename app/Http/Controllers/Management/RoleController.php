@@ -4,19 +4,24 @@ namespace App\Http\Controllers\Management;
 
 use App\Data\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RoleController extends Controller
+class RoleController extends CustomController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $roles = Role::orderBy('name')->paginate(10);
+        if (null == $request->query('q')) {
+            $roles = Role::orderBy('name')->paginate($this->getItemsPerPage());
+        } else {
+            $roles = Role::where('name', 'like', "%" . trim($request->query('q')) . "%")->orderBy('name')->paginate($this->getItemsPerPage());
+        }
         return view('management.role.index')->with("roles", $roles);
     }
 

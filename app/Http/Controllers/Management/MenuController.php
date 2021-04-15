@@ -5,19 +5,23 @@ namespace App\Http\Controllers\Management;
 use App\Data\Models\Category;
 use App\Data\Models\Menu;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuController extends CustomController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $menus = Menu::orderBy('name')->paginate(10);
+        if (null == $request->query('q')) {
+            $menus = Menu::orderBy('name')->paginate($this->getItemsPerPage());
+        } else {
+            $menus = Menu::where('name', 'like', "%" . trim($request->query('q')) . "%")->orderBy('name')->paginate($this->getItemsPerPage());
+        }
         return view("management.menu.index")->with("menus", $menus);
     }
 
@@ -145,14 +149,14 @@ class MenuController extends Controller
         return redirect("/management/menu");
     }
 
-    private function deleteImage($image = null){
+    private function deleteImage($image = null)
+    {
         if (null == $image) return;
-        try{
+        try {
             if ((null != $image || "" != $image) && $image != "noimage.png") {
                 unlink(public_path("images/menu_images") . "/" . $image);
             }
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             // nothing to display
         }
     }
