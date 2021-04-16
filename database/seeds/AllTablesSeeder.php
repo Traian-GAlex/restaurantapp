@@ -12,12 +12,13 @@ class AllTablesSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            RolesTableSeeder::class,
-//            AdminSeeder::class,
-//            UsersTableSeeder::class,
-//            TablesTableSeeder::class,
-//            MenuTableSeeder::class,
+            RolesTableSeeder::class,
+            AdminSeeder::class,
+            UsersTableSeeder::class,
+            TablesTableSeeder::class,
+            MenuTableSeeder::class,
             CategoriesTableSeeder::class,
+            OrdersTableSeeder::class,
         ]);
     }
 }

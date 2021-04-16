@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(User::class, 10000)->create()->each(function($user){
+        $users = factory(User::class, 200)->create()->each(function($user){
             $role = Role::where('name', 'Guest')->first();
             $user->roles()->attach($role->id);
         });
