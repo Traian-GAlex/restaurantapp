@@ -21,7 +21,9 @@ class User extends Authenticatable
         'email_verified_at',
         'is_active',
         'is_blocked',
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     protected $table = "users";

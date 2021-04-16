@@ -8,6 +8,7 @@ use App\Data\Models\Peron as Prs;
 use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends CustomController
 {
@@ -87,6 +88,7 @@ class UserController extends CustomController
             $request->image->move(public_path("images/user_images"), $imageName);
         }
         $user = new User();
+        $user->uuid = Str::uuid();
         $user->name = $request->name;
         $user->email = $request->email;
 

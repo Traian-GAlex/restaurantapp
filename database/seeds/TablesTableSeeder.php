@@ -12,7 +12,7 @@ class TablesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();;
+        $faker = \Faker\Factory::create();
         $tableCount = 15;
         $chairType = [2, 4, 6];
         for ($i = 1; $i <= $tableCount; $i++) {
