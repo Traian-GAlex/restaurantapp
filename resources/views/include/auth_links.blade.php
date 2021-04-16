@@ -1,13 +1,19 @@
 @if (Route::has('login'))
-    <div class="top-right links">
         @auth
-            <a href="{{ url('/home') }}">Home</a>
+            <div class="col text-center">
+            <a href="{{ url('/home') }}" class="btn btn-outline-light btn-block">Home</a>
+            </div>
         @else
-            <a href="{{ route('login') }}">Login</a>
+            <div class="col">
+                <a href="{{ route('login') }}" class="btn btn-outline-light btn-block">Login</a>
+            </div>
+
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}">Register</a>
+                <div class="col">
+                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-block">Register</a>
+                </div>
+
             @endif
         @endauth
-    </div>
 @endif

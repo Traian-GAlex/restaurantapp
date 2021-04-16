@@ -16,13 +16,9 @@
 <div class="overlay"></div>
 <div class="welcome-image"></div>
 <div class="welcome-content text-center">
-    <div class="w-title">Restaurant App</div>
+    <div class="w-title"><i class="las la-utensils la-lg"></i> <span>Restaurant App</span></div>
     <div class="row w-buttons">
-        <div class="col">
-            <button class="btn btn-outline-light btn-block">Login</button>
-
-        </div>
-        <div class="col"><button class="btn btn-outline-light btn-block">Register</button></div>
+        @include("include.auth_links")
     </div>
 </div>
 </body>
