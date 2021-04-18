@@ -4,15 +4,32 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-5">
-                        @include("cashier.include.tables")
-                    </div>
-                    <div class="col-7">
-
-                    </div>
-                </div>
+                @include("include.date_time_filter", [
+                            "start_date" => $start_date,
+                            "start_time" => $start_time,
+                            "end_date" => $end_date,
+                            "end_time" => $end_time,
+                        ])
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                {{count($orders)}}
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+@section('custom_script')
+    <script src="{{asset('js/cashier/cashier.js')}}" defer></script>
 @endsection
