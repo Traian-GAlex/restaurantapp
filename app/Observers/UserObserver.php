@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Data\Models\User;
-use App\Data\Models\Peron as Prs;
+use App\Data\Models\Person as Prs;
 
 class UserObserver
 {

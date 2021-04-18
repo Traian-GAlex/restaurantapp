@@ -21,6 +21,8 @@ class CreateOrderDetailsTable extends Migration
             $table->decimal('price', 8, 2)->default(0);
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -30,6 +32,7 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('order_details');
     }
 }

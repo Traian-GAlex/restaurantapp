@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Data\Models\Role;
 use App\Data\Models\User;
-use App\Data\Models\Peron as Prs;
+use App\Data\Models\Person as Prs;
 use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

@@ -32,6 +32,7 @@ class CreateOrderPaymentsTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('order_payments');
     }
 }

@@ -85,7 +85,7 @@ class User extends Authenticatable
 
     public function person()
     {
-        return $this->hasOne(Peron::class, "user_id", "id");
+        return $this->hasOne(Person::class, "user_id", "id");
     }
 
     public function roles()

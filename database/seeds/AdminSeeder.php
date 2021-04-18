@@ -26,6 +26,12 @@ class AdminSeeder extends Seeder
             $admin->name = 'Admin';
             $admin->save();
         }
+        $cashier = Role::where('name', 'Cashier')->first();
+        if (null == $cashier) {
+            $cashier = new Role();
+            $cashier->name = 'Cashier';
+            $cashier->save();
+        }
 
         $user = User::where('name', 'Admin')->first();
         if (null == $user){
@@ -41,6 +47,9 @@ class AdminSeeder extends Seeder
 
         if (!$user->isInRole('Admin')){
             $user->roles()->attach($admin->id);
+        }
+        if (!$user->isInRole('Cashier')) {
+            $user->roles()->attach($cashier->id);
         }
 
     }
