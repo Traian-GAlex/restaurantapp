@@ -22,6 +22,7 @@
             <th scope="col">Children</th>
             <th scope="col">Total</th>
             <th scope="col">Payd</th>
+            <th scope="col">Status</th>
 
             <th style="width: 32px;" scope="col">View</th>
             <th style="width: 32px;" scope="col">Edit</th>
@@ -40,6 +41,13 @@
                 <td style="width: 40px;" class="text-center align-middle">{{$order->children}}</td>
                 <td style="width: 75px;" class="text-right align-middle">{{$order->total}}</td>
                 <td style="width: 75px;" class="text-right align-middle">{{$order->payd}}</td>
+                <td style="width: 75px;" class="text-center align-middle">
+                    @if($order->total <= $order->payd)
+                        <i class="las la-check-square la-lg text-success"></i>
+                    @else
+                        <i class="las la-stop la-lg text-danger"></i>
+                    @endif
+                </td>
                 <td style="width: 32px;" class="align-middle">
                     <a class="btn btn-outline-success" href="/cashier/{{$order->id}}/view">
                         <i class="las la-search la-lg"></i>
