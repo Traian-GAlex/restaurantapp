@@ -13,6 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CustomController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,10 +27,17 @@ Route::get('/reports', function(){
 })->name('reports')->middleware("role:Admin");
 
 Route::get('/options/rows-per-page/{numXPage}', function($numXPage){
-    \App\Http\Controllers\CustomController::setItemsPerPage((int) $numXPage);
+    CustomController::setItemsPerPage((int) $numXPage);
     return response([
         'value' => $numXPage,
         'sessionValue' => session("itemsPerPage")
+    ],200);
+});
+
+Route::post('/options/set_filter_dates', function(Request $request){
+    CustomController::setFilterDates($request);
+    return response([
+        'data' => CustomController::getFilterDates(),
     ],200);
 });
 

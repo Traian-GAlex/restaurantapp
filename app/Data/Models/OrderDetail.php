@@ -15,5 +15,11 @@ class OrderDetail extends Model
         'price',
     ];
 
+    protected $appends=[
+        'item_total'
+    ];
 
+    public function getItemTotalAttribute(){
+        return $this->qty * $this->price;
+    }
 }

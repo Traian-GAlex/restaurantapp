@@ -20,15 +20,70 @@ class Order extends Model
         'note',
     ];
 
-    public function tables(){
+
+
+    protected $casts = [
+        'order_date' => 'datetime',
+        'delivery_date' => 'datetime',
+    ];
+
+    protected $appends = [
+        'customer_name',
+        'total',
+    ];
+
+
+    public function getCustomerNameAttribute()
+    {
+        $retVal = 'n.d.';
+        if (null != $this->customer) {
+            $retVal = $this->customer;
+        } elseif (null != $this->user_id) {
+            $user = User::find($this->user_id);
+            if (null != $user) $retVal = $user->getDisplayName();
+        }
+        return $retVal;
+    }
+
+    public function getTotalAttribute(){
+        $orderItems = OrderDetail::where('order_id', $this->id)->get();
+        $total = 0;
+        foreach($orderItems as $orderItem){
+            $total += $orderItem->item_total;
+        }
+        return $total;
+    }
+
+    public function getPaydAttribute(){
+        $payments = OrderPayment::where('order_id', $this->id)->get();
+        $total = 0;
+        foreach($payments as $payment){
+            $total += $payment->amount;
+        }
+        return $total;
+    }
+
+
+    public static function CountAll($filter_dates = null)
+    {
+        if (null == $filter_dates) return Order::all()->count();
+        return Order::whereBetween('order_date', [($filter_dates->start_date . ' ' . $filter_dates->start_time), ($filter_dates->end_date . ' ' . $filter_dates->end_time)])->count();
+    }
+
+
+
+    public function tables()
+    {
         return $this->belongsToMany(Table::class, 'order_tables', 'order_id', 'table_id');
     }
 
-    public function items(){
+    public function items()
+    {
         return $this->belongsToMany(Menu::class, 'order_details', 'order_id', 'item_id');
     }
 
-    public function payments(){
+    public function payments()
+    {
         return $this->hasMany(OrgerPayment::class, 'order_id', 'id');
     }
 }

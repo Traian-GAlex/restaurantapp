@@ -160,7 +160,7 @@ class OrdersTableSeeder extends Seeder
     private function addPaymentsToOrder($order, Carbon $beginDate)
     {
         $pDate = $beginDate;
-        $amount = OrderDetail::where('order_id', '=', $order->id)->sum('price');
+        $amount = $order->total;
         $pos = (mt_rand(1, 100) % 2 == 0) ? true : false;
         $received = 0;
         $change = 0;

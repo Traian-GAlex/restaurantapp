@@ -5,25 +5,22 @@ namespace App\Http\Controllers\Cashier;
 use App\Data\Models\Order;
 use App\Data\Models\Table;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomController;
 use Illuminate\Http\Request;
 
-class CashierController extends Controller
+class CashierController extends CustomController
 {
     public function index(Request $request){
-        $crtDate = new \DateTime();
-        $start_date = (null == $request->start_date) ? $crtDate->format('Y-m-d'): $request->start_date;
-        $start_time = (null == $request->start_time) ? '00:00': $request->start_time;
-        $end_date = (null == $request->end_date) ? $crtDate->format('Y-m-d'): $request->end_date;
-        $end_time = (null == $request->end_time) ? '23:59': $request->end_time;
-
-        $orders = Order::whereBetween('order_date', [($start_date . ' ' . $start_time), ($end_date . ' ' . $end_time)])->get();
+        $d = $this::getFilterDates();
+        $orders = Order::whereBetween('order_date', [($d->start_date . ' ' . $d->start_time), ($d->end_date . ' ' . $d->end_time)])->orderBY('order_date', 'desc')->paginate($this->getItemsPerPage());
 
         return view("cashier.index")
-            ->with('start_date', $start_date)
-            ->with('start_time', $start_time)
-            ->with('end_date', $end_date)
-            ->with('end_time', $end_time)
-            ->with('orders', $orders);
+            ->with('start_date', $d->start_date)
+            ->with('start_time', $d->start_time)
+            ->with('end_date', $d->end_date)
+            ->with('end_time', $d->end_time)
+            ->with('orders', $orders)
+            ->with('all_rows', Order::CountAll($d));
     }
 
 

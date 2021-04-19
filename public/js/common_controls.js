@@ -10996,6 +10996,19 @@ $(document).ready(function () {
       location.reload();
     });
   });
+  $('#submit_filter_dates').click(function (event) {
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: '/options/set_filter_dates/',
+      data: $('#date_segment_filter').serialize(),
+      // success: success,
+      dataType: 'json'
+    }).done(function (response) {
+      console.log(response.data);
+      location.reload();
+    });
+  });
 });
 
 /***/ }),
