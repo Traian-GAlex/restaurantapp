@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Cashier;
 
 use App\Data\Models\Order;
 use App\Data\Models\OrderDetail;
+use App\Data\Models\OrderPayment;
+use App\Data\Models\OrderTable;
 use App\Data\Models\Table;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomController;
@@ -42,5 +44,15 @@ class CashierController extends CustomController
     public function get_order_items(Request $request, $id){
         $order_items = OrderDetail::where('order_id', $id)->get();
         return view("cashier.include.order_items_view")->with("order_items", $order_items);
+    }
+
+    public function get_order_tables(Request $request, $id){
+        $order_tables = OrderTable::where('order_id', $id)->get();
+        return view("cashier.include.order_tables_view")->with("order_tables", $order_tables);
+    }
+
+    public function get_order_payments(Request $request, $id){
+        $order_payments = OrderPayment::where('order_id', $id)->get();
+        return view("cashier.include.order_payments_view")->with("order_payments", $order_payments);
     }
 }

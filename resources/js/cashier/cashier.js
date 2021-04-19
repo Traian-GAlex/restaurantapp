@@ -15,6 +15,10 @@ $(document).ready(() => {
         $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
         $(e.target).addClass('active');
         $('#order_content').html('');
+        $.get('/cashier/get/order/' + $('#order_id').val() + '/tables')
+            .done((response) => {
+                $('#order_content').html(response);
+            });
     });
 
     $('#paymentsTab').click((e) => {
@@ -22,6 +26,10 @@ $(document).ready(() => {
         $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
         $(e.target).addClass('active');
         $('#order_content').html('');
+        $.get('/cashier/get/order/' + $('#order_id').val() + '/payments')
+            .done((response) => {
+                $('#order_content').html(response);
+            });
     });
 
     $('#itemsTab').click();

@@ -8,6 +8,10 @@ class OrderPayment extends Model
 {
     protected $table = "order_payments";
 
+    protected $casts = [
+        'payment_date' => 'datetime',
+    ];
+
     protected $fillable = [
         'order_id',
         'payment_date',
@@ -17,7 +21,8 @@ class OrderPayment extends Model
         'pos',
     ];
 
-    public function order(){
+    public function order()
+    {
         return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 }
