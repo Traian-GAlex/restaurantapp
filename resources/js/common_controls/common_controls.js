@@ -25,4 +25,25 @@ $(document).ready(() => {
         })
     });
 
+    $('#itemsTab').click((e) => {
+        e.preventDefault();
+        $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+        $(e.target).addClass('active');
+    });
+
+    $('#tablesTab').click((e) => {
+        e.preventDefault();
+        $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+        $(e.target).addClass('active');
+    });
+
+    $('#paymentsTab').click((e) => {
+        e.preventDefault();
+        $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+        $(e.target).addClass('active');
+    });
+
+    $('#itemsTab').click();
+
+
 });

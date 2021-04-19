@@ -23,8 +23,16 @@ class CashierController extends CustomController
             ->with('all_rows', Order::CountAll($d));
     }
 
+    public function show(Request $request, $id){
+        $order = Order::find($id);
+
+        return view("cashier.view")
+            ->with("order", $order);
+
+    }
 
 
+    // ajax call
     public function get_tables(Request $request){
         $tables = Table::orderByRaw("available desc, name")->get();
         return view("cashier.include.table_list")->with("tables", $tables);

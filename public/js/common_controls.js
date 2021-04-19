@@ -11009,6 +11009,22 @@ $(document).ready(function () {
       location.reload();
     });
   });
+  $('#itemsTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+  });
+  $('#tablesTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+  });
+  $('#paymentsTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+  });
+  $('#itemsTab').click();
 });
 
 /***/ }),

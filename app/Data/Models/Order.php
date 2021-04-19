@@ -51,7 +51,7 @@ class Order extends Model
         foreach($orderItems as $orderItem){
             $total += $orderItem->item_total;
         }
-        return  number_format((float) $total, 2);   
+        return  number_format((float) $total, 2);
     }
 
     public function getPaydAttribute(){

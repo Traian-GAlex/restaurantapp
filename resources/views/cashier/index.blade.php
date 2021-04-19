@@ -43,5 +43,6 @@
 @endsection
 
 @section('custom_script')
+    @parent
     <script src="{{asset('js/cashier/cashier.js')}}" defer></script>
 @endsection
