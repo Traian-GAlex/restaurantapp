@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10979,48 +10979,26 @@ return jQuery;
 
 /***/ }),
 
-/***/ "./resources/js/common_controls/common_controls.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/common_controls/common_controls.js ***!
-  \*********************************************************/
+/***/ "./resources/js/cashier/paginator.js":
+/*!*******************************************!*\
+  !*** ./resources/js/cashier/paginator.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-$(document).ready(function () {
-  // alert('ok');
-  $('#itemsPerPage').change(function () {
-    console.log($(this).val());
-    $.get('/options/rows-per-page/' + $(this).val()).done(function (response) {
-      console.log(response);
-      location.reload();
-    });
-  });
-  $('#submit_filter_dates').click(function (event) {
-    event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: '/options/set_filter_dates/',
-      data: $('#date_segment_filter').serialize(),
-      // success: success,
-      dataType: 'json'
-    }).done(function (response) {
-      console.log(response.data);
-      location.reload();
-    });
-  });
-});
+$(document).ready(function () {});
 
 /***/ }),
 
-/***/ 22:
-/*!***************************************************************!*\
-  !*** multi ./resources/js/common_controls/common_controls.js ***!
-  \***************************************************************/
+/***/ 3:
+/*!*************************************************!*\
+  !*** multi ./resources/js/cashier/paginator.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Sandro\Documents\Corsi\LaravelAndVue\restaurantapp\restaurantapp\resources\js\common_controls\common_controls.js */"./resources/js/common_controls/common_controls.js");
+module.exports = __webpack_require__(/*! C:\Users\Sandro\Documents\Corsi\LaravelAndVue\restaurantapp\restaurantapp\resources\js\cashier\paginator.js */"./resources/js/cashier/paginator.js");
 
 
 /***/ })

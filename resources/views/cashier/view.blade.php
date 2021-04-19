@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('content')
-
+    <input type="hidden" id="order_id" value="{{$order->id}}}">
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -78,7 +78,7 @@
                         <a id="paymentsTab" class="nav-link" href="#">Payments</a>
                     </li>
                 </ul>
-                <div id="order_content" class="container-fluid form-control" >
+                <div id="order_content" class="container-fluid p-3" >
                     &nbsp;
                 </div>
 
@@ -94,6 +94,6 @@
 
 @section('custom_script')
     @parent
-    <script src="{{asset('js/common_controls.js')}}" defer></script>
+    <script src="{{asset('js/cashier/cashier.js')}}" defer></script>
 @endsection
 

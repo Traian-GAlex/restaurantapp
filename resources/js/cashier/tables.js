@@ -17,11 +17,9 @@ $(document).ready(function () {
         $("#tablesViewerBtn").click();
         // closeTablesListBtn
     }).on('shown.bs.modal', function () {
-        $.get("/cashier/get-tables")
+        $.get("/cashier/get/tables")
             .done(function (response) {
-                // console.log('response is ' , response);
                 $("#tablesModalBody").html(response);
-
             });
     })
 

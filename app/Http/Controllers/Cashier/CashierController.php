@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cashier;
 
 use App\Data\Models\Order;
+use App\Data\Models\OrderDetail;
 use App\Data\Models\Table;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomController;
@@ -36,5 +37,10 @@ class CashierController extends CustomController
     public function get_tables(Request $request){
         $tables = Table::orderByRaw("available desc, name")->get();
         return view("cashier.include.table_list")->with("tables", $tables);
+    }
+
+    public function get_order_items(Request $request, $id){
+        $order_items = OrderDetail::where('order_id', $id)->get();
+        return view("cashier.include.order_items_view")->with("order_items", $order_items);
     }
 }

@@ -3,6 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/css/custom.css": "/css/custom.css",
     "/js/cashier/cashier.js": "/js/cashier/cashier.js",
+    "/js/cashier/paginator.js": "/js/cashier/paginator.js",
     "/js/cashier/tables.js": "/js/cashier/tables.js",
     "/js/common_controls.js": "/js/common_controls.js"
 }

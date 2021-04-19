@@ -93,7 +93,30 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {});
+$(document).ready(function () {
+  $('#itemsTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+    $('#order_content').html('');
+    $.get('/cashier/get/order/' + $('#order_id').val() + '/items').done(function (response) {
+      $('#order_content').html(response);
+    });
+  });
+  $('#tablesTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+    $('#order_content').html('');
+  });
+  $('#paymentsTab').click(function (e) {
+    e.preventDefault();
+    $('.nav-tabs>.nav-item>.nav-link').removeClass('active');
+    $(e.target).addClass('active');
+    $('#order_content').html('');
+  });
+  $('#itemsTab').click();
+});
 
 /***/ }),
 

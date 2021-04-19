@@ -110,8 +110,7 @@ $(document).ready(function () {
   $('#tablesList').on('hide.bs.modal', function () {
     $("#tablesViewerBtn").click(); // closeTablesListBtn
   }).on('shown.bs.modal', function () {
-    $.get("/cashier/get-tables").done(function (response) {
-      // console.log('response is ' , response);
+    $.get("/cashier/get/tables").done(function (response) {
       $("#tablesModalBody").html(response);
     });
   });
